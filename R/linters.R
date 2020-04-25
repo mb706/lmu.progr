@@ -64,8 +64,8 @@ space.linters <- list(
 
 #' @export
 linters.all.limit.import <- c(linters.best.practices, style.linters,
-  linters.functions.limit.import, static.check.linters, spaces.linters)
+  linters.functions.limit.import, static.check.linters, space.linters)
 
 #' @export
 linters.all.unlimited <- c(linters.best.practices, style.linters,
-  linters.functions, static.check.linters, spaces.linters)
+  linters.functions, static.check.linters, space.linters)
