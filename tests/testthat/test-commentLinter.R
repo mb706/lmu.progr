@@ -24,6 +24,4 @@ test_that("lints correctly", {
     ), linter
   )
 
-
-
 })
