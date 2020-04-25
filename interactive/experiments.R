@@ -116,3 +116,6 @@ x = a +
   (b + c) +
   d
 
+# TODO: check that spaces before comments are ignored
+# TODO: check that camelCase objects are functions, and that
+# CamelCase objects return S3-objects of the same class OR are R6-classes
