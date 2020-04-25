@@ -15,7 +15,7 @@ extractionOperatorLinter <- function (source.file)  {
         line <- source.file$lines[[as.character(line.num)]]
         Lint(filename = source.file$filename, line_number = line.num,
           column_number = start.col.num, type = "warn",
-          message = sprintf("Use `[[` instead of `%s`  to extract an element.",
+          message = sprintf("Use `[[` instead of `%s` to extract an element.",
             token$text), line = line, linter = "modified_extraction_operator_linter",
           ranges = list(c(start.col.num, end.col.num)))
       }
