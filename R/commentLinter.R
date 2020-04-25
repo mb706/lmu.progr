@@ -1,7 +1,8 @@
 # TODO: space after comment
 
 commentLinter <- function(source_file) {
-  lapply(ids_with_token(source_file, "COMMENT"), function(id) {
+  comment.ids <- ids_with_token(source_file, "COMMENT")
+  spaces.before.lints <- lapply(comment.ids, function(id) {
     token <- with_id(source_file, id)
     beginning <- substr(source_file$lines[[as.character(token$line1)]], 1, token$col1 - 1)
     match <- re_matches(beginning, rex(anything, non_space), locations = TRUE)$end
@@ -15,4 +16,16 @@ commentLinter <- function(source_file) {
         linter = "comment_linter")
     }
   })
+  spaces.after.lints <- lapply(comment.ids, function(id) {
+    token <- with_id(source_file, id)
+    text <- token$text
+    if (!re_matches(text, rex(start, "#", maybe(single_quote), space))) {
+      Lint(filename = source_file$filename, line_number = token$line1,
+        column_number = token$col1 + 1 + startsWith(text, "#'"), type = "style",
+        message = "Comment should always start with # or #' followed by at least one space.",
+        line = source_file$lines[[as.character(token$line1)]],
+        linter = "comment_linter")
+    }
+  })
+  c(spaces.before.lints, spaces.after.lints)
 }
