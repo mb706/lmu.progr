@@ -10,7 +10,7 @@ disallowExplicitIntegerLinter <- function(source_file) {
     end_col_num <- token$col2
     start_col_num <- token$col1
     Lint(filename = source_file$filename, line_number = line_num,
-      column_number = end_col_num + 1L, type = "style",
+      column_number = end_col_num, type = "style",
       message = "Integers should be implicit. Don't use the 1L form.",
       line = source_file$lines[[as.character(line_num)]],
       ranges = list(c(start_col_num, end_col_num)),
